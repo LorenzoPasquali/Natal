@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de Tempo Juntos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Centralizar a foto e o texto */
+    .center-content {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    /* Estilo do contador */
+    .time-counter {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      color: #414141;
+    }
+
+    /* Estilo do botão invisível */
+    .invisible-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;  /* Garante que o botão tenha uma área clicável */
+      height: 50px; /* Dá altura para que o botão seja detectado */
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="bg-red-100 min-h-screen flex flex-col items-center justify-center">
+  <header class="text-center mb-6">
+    <h1 class="text-4xl font-bold text-red-600 mb-4">Obrigado por tanto! 💖</h1>
+  </header>
+
+  <div class="center-content">
+    <img src="/src/images/Foto11.jpg" alt="Foto Final" class="rounded-lg shadow-lg w-full max-w-[300px] mb-4">
+
+    <div id="counter" class="time-counter"></div>
+  </div>
+
+  <!-- Botão invisível que leva à página inicial -->
+  <button class="invisible-btn" onclick="window.location.href='index.html'"></button>
+
+  <script>
+    // Data inicial (18 de dezembro de 2022)
+    const startDate = new Date("2022-12-18T00:00:00");
+
+    function updateCounter() {
+      const now = new Date();
+      const diff = now - startDate; // Diferença em milissegundos
+
+      // Cálculos
+      const seconds = Math.floor(diff / 1000);
+      const minutes = Math.floor(seconds / 60);
+      const hours = Math.floor(minutes / 60);
+      const days = Math.floor(hours / 24);
+
+      // Exibir no formato de tempo
+      document.getElementById("counter").textContent = `Há ${days} dias, ${hours % 24} horas, ${minutes % 60} minutos, e ${seconds % 60} segundos Te amando!`;
+    }
+
+    // Atualizar contador a cada segundo
+    setInterval(updateCounter, 1000);
+    updateCounter(); // Atualizar inicialmente
+  </script>
+</body>
+</html>

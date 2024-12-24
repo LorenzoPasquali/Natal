@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nos Tornamos Pais!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Estilo do carrossel */
+    .carousel {
+      scroll-snap-type: x mandatory;
+      overflow-x: auto;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .carousel-item {
+      scroll-snap-align: center;
+      flex: 0 0 100%;
+    }
+
+    /* Inicialmente esconder o botão */
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-red-100 min-h-screen flex flex-col items-center justify-center">
+  <header class="text-center mb-6">
+    <h1 class="text-4xl font-bold text-red-600">Nos Tornamos Pais 🐾</h1>
+    <p id="dynamic-text" class="text-lg text-gray-700 mt-2">
+        Você me ensinou a valorizar as "minúsculas" coisas
+    </p>
+  </header>
+
+  <div class="carousel" id="carousel">
+    <!-- Seção 2 - Pais com os Cachorros -->
+    <div class="carousel-item">
+      <img src="/src/images/Foto5.jpg" alt="Foto com Cachorro 1" class="rounded-lg shadow-lg w-full max-h-[500px] object-cover">
+    </div>
+    <div class="carousel-item">
+      <img src="/src/images/Foto6.jpg" alt="Foto com Cachorro 3" class="rounded-lg shadow-lg w-full max-h-[500px] object-cover">
+    </div>
+    <div class="carousel-item">
+      <img src="/src/images/Foto7.jpg" alt="Foto com Cachorro 2" class="rounded-lg shadow-lg w-full max-h-[500px] object-cover">
+    </div>
+  </div>
+
+  <!-- Botão Avançar inicialmente escondido -->
+  <footer class="mt-8">
+    <a 
+      href="evolucao3.html"
+      id="avancar-btn"
+      class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 hidden">
+      Avançar
+    </a>
+  </footer>
+
+  <script>
+    const dynamicText = document.getElementById('dynamic-text');
+    const carousel = document.getElementById('carousel');
+    const avancarBtn = document.getElementById('avancar-btn');
+    const texts = [
+      "Você me ensinou a valorizar as 'minúisculas' coisas",  // Texto padrão
+      "Depois de um tempo, nem tão 'minúisculas' assim..."  // Texto específico para a última foto
+    ];
+
+    // Função que verifica qual item do carrossel está visível e atualiza o texto
+    const updateText = () => {
+      const items = document.querySelectorAll('.carousel-item');
+      let currentIndex = 0;
+
+      items.forEach((item, index) => {
+        const rect = item.getBoundingClientRect();
+        if (rect.left >= 0 && rect.right <= window.innerWidth) {
+          currentIndex = index;
+        }
+      });
+
+      // Atualiza o texto com base na posição da última foto
+      if (currentIndex === 2) {  // Última foto (índice 2)
+        dynamicText.textContent = texts[1];  // "Depois de um tempo, nem tão 'minúisculas' assim..."
+        avancarBtn.classList.remove('hidden');  // Exibe o botão "Avançar"
+      } else {
+        dynamicText.textContent = texts[0]; // Texto padrão
+        avancarBtn.classList.add('hidden');  // Esconde o botão "Avançar"
+      }
+    };
+
+    // Inicializa com o texto correto na primeira renderização (texto padrão)
+    dynamicText.textContent = texts[0];
+
+    // Atualiza o texto sempre que o carrossel é rolado
+    carousel.addEventListener('scroll', () => {
+      setTimeout(updateText, 100); // Atraso para garantir que o índice correto seja obtido
+    });
+  </script>
+</body>
+</html>

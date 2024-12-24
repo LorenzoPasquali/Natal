@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Natal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Animação de entrada */
+    .fade-in {
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="bg-red-100 min-h-screen flex items-center justify-center">
+  <div class="text-center fade-in">
+    <h1 class="text-5xl font-bold text-red-600 mb-4">Feliz Natal, minha princesa! 🎄</h1>
+    <p class="text-xl text-gray-700 mb-6">
+      Falhei com o presente esse ano, mas espero que essa mensagem possa expressar o quanto você é especial para mim.
+    </p>
+    <button 
+        class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300"
+        onclick="window.location.href='historia.html'">
+        Descobrir mais
+</button>
+  </div>
+
+  <script>
+    function showMore() {
+      alert("Essa é apenas a primeira surpresa! ❤");
+    }
+  </script>
+</body>
+</html>
